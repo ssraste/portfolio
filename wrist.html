@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrist Rehabilitation Glove- Srushti Raste</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fefefe;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            background: #fefefe;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #f0f0f0;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: #2c2c2c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #2c2c2c;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2c2c2c;
+            transform: translateX(-4px);
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 2rem 0;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #2c2c2c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 2rem 0;
+            max-width: 930px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 1rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .content-section p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        /* Two Column Layout */
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+            max-width: 1400px;
+        }
+
+        /* Left Column - PDF */
+        .pdf-column {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .pdf-column h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 750px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .pdf-controls {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .pdf-btn {
+            padding: 0.5rem 1rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-btn:hover {
+            background: #1a1a1a;
+        }
+
+        /* Right Column - Media */
+        .media-column {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .media-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .media-header {
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-bottom: 1px solid #eee;
+        }
+
+        .media-header h3 {
+            margin: 0 0 0.5rem 0;
+            color: #2c2c2c;
+            font-size: 1.2rem;
+        }
+
+        .media-header p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .media-content {
+            padding: 1.5rem;
+        }
+
+        .media-content video,
+        .media-content img {
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .media-content video {
+            object-fit: cover;
+        }
+
+        .media-content img {
+            object-fit: cover;
+        }
+
+        .media-description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Results Section */
+        .results-section {
+            grid-column: 1 / -1;
+            margin: 0rem 0;
+        }
+
+        .results-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.0rem;
+            color: #2c2c2c;
+        }
+
+        .plots-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plot-item {
+            flex: 1;
+        }
+
+        .plot-item img {
+            object-fit: cover;
+            border-radius: 1px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .results-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Links Section */
+        .project-links {
+            text-align: center;
+            padding: 3rem 0;
+            background: #fafafa;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: #666;
+            background: #fafafa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .two-column-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .pdf-column {
+                position: static;
+                order: 2;
+            }
+            
+            .media-column {
+                order: 1;
+            }
+            
+            .pdf-embed {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .pdf-controls {
+                flex-direction: column;
+            }
+            
+            .media-content video {
+                height: 200px;
+            }
+            
+            .media-content img {
+                height: 150px;
+            }
+
+            .plots-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Srushti Raste</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html#projects" class="back-link">
+                ← Back to Projects
+            </a>
+        </div>
+
+        <section class="project-header">
+            <div class="container">
+                <h1 class="project-title">Wrist Rehabilitation Sleeve with Gamification</h1>
+                <p class="project-subtitle">Rehabilitation Glove</p>
+                <div class="project-tags">
+                    <span class="tag">Wrist motor recovery</span>    
+                    <span class="tag">Motor Control</span>
+                 </div>
+            </div>
+        </section>
+      
+        <section class="project-content">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Problem Statement</h2>
+                    <p> Traditional stroke recovery therapy can lead to therapist fatigue and high costs. However, robotic-assisted treatment has shown promise in improving recovery for hand impairments and reducing therapist workloads. Gamification in rehabilitation boosts patient motivation and outcomes, often exceeding traditional methods. </p>
+                </div>
+            </div>
+            
+<!-- Design Section -->
+<section class="project-content">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; align-items: start; margin-bottom: 0rem;">
+            <!-- Left - Design Text -->
+            <div class="content-section" style="margin-bottom: 0;">
+                <h2>Design</h2>
+                <p><li>Two peers and I designed and developed a low-cost robotic sleeve for wrist rehabilitation. The sleeve facilitates movement in four directions: <b>abduction, adduction, extension, and flexion.</b></li></p> 
+                <p><li>To enhance patient engagement, we created a <b>game</b> where patients catch virtual spheres using their wrist movements. The spheres appear on screen within the patient's range of motion, allowing for <b>customization</b> to meet individual patient needs.</li></p>
+                <p><li>Patients can <b>track</b> missed and total scores, motivating them to catch as many spheres as possible to enhance their rehabilitation. </li></p>
+                <p><li>Therapists can customize the game with unique patterns for patients to follow, focusing on <b>accuracy & speed</b>, while also tracking their progress over time.</li></p>
+            </div>
+            
+            <!-- Right - Design Images -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+                <img src="img/wrist/wrist design.png" width="340" height="310" style="border-radius: 4px;">
+                <img src="img/wrist/design1.png" width="280" height="300" style="border-radius: 4px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hardware and Demo Section -->
+<section class="project-content">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; margin-bottom: 0rem;">
+            <!-- Left - Hardware Description -->
+            <div class="content-section" style="margin-bottom: 0;">
+                <h2>Hardware</h2>
+                <p style="margin-bottom: 1rem; color: #555; line-height: 1.6; font-size: 1.0rem;">
+                <li><strong>Two IMUs</strong> were used, one on the wrist base as a reference point, and the other on the knuckles to track wrist movement.</li> </p>      
+                <p style="margin-bottom: 1rem; color: #555; line-height: 1.6; font-size: 1.0rem;">
+                <li>IMU data updates the virtual hand's position on the screen, providing real-time feedback on wrist movement and sphere alignment.</li> </p>
+                <p style="margin-bottom: 1rem; color: #555; line-height: 1.6; font-size: 1.0rem;">
+                <li> <strong>Arduino</strong> processes real-time IMU data, sends commands to the motor driver ULN2003 for stepper motors, and interfaces with a rehabilitation game.</li> </p>
+                <p style="margin-bottom: 1rem; color: #555; line-height: 1.6; font-size: 1.0rem;">
+                <li><strong>Elastic bands</strong> are used to return the wrist to its neutral position after the motors release tension.</li> </p>
+            </div>
+            
+            <!-- Right - Hardware Images and Demo -->
+            <div style="display: flex; flex-direction: column; gap: .6rem;">
+                <!-- Hardware Images -->
+                <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                    <img src="img/wrist/wrist1.png" width="200" height="250" style="border-radius: 4px;">
+                    <img src="img/wrist/wrist2.png" width="200" height="250" style="border-radius: 4px;">
+                </div>
+                
+                <!-- Demo Video -->
+                <div>
+                 <!----   <h3 style="margin-bottom: 1rem; color: #2c2c2c; font-size: 1.2rem;">Demo</h3> -->
+                    <video controls autoplay loop muted width="97.5%" height="250" style="border-radius: 0px;">
+                        <source src="img/wrist/wrist.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Report Section -->
+<section class="project-content">
+    <div class="container">
+        <div class="content-section">
+            <h2>Report</h2>
+            <iframe class="pdf-embed" 
+                    src="img/wrist/wrist.pdf" frameborder="0">
+                <p>Your browser does not support iframes.</p>
+            </iframe>
+            <div class="pdf-controls">
+                <a href="img/wrist/wrist.pdf" download class="pdf-btn">Download</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Srushti Raste. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+

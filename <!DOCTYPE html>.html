@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legged Locomotion on Granular Media - Srushti Raste</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fefefe;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            background: #fefefe;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #f0f0f0;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: #2c2c2c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #2c2c2c;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2c2c2c;
+            transform: translateX(-4px);
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 2rem 0;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #2c2c2c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 2rem 0;
+            max-width: 930px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 1rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .content-section h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .content-section p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .content-section img {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Two Column Layout */
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 1rem;
+            margin: 4rem 0;
+            max-width: 1400px;
+        }
+
+        /* Overview Section Styling */
+        .overview-text h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .overview-text p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Results Section */
+        .results-section {
+            margin: 3rem 0;
+        }
+
+        .results-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .plots-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plot-item {
+            flex: 1;
+        }
+
+        .plot-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .results-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Links Section */
+        .project-links {
+            text-align: center;
+            padding: 3rem 0;
+            background: #fafafa;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: #666;
+            background: #fafafa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .two-column-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .plots-container {
+                flex-direction: column;
+            }
+
+            .two-column-section {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Srushti Raste</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html#projects" class="back-link">
+                ← Back to Projects
+            </a>
+        </div>
+
+        <section class="project-header">
+            <div class="container">
+                <h1 class="project-title">Legged Locomotion on Granular Media</h1>
+                <div class="project-tags">
+                    <span class="tag">Mechanical design</span>
+                    <span class="tag">Motor Control</span>
+                    <span class="tag">Bio-inspiration locomotion</span>               
+                </div>
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="container">
+                <div class="two-column-section">
+                    <div class="overview-text">
+                        <h2>Overview</h2>
+                        <p>
+                            This research investigates bio-inspired locomotion strategies for soft robotic systems navigating granular substrates. 
+                            The focus is on understanding the mechanics of leg-ground interaction and developing adaptive control algorithms 
+                            for enhanced mobility in challenging terrains such as sand, gravel, and loose soil.
+                        </p>
+                        <p>
+                            By studying natural locomotion patterns from animals like lizards, crabs, and insects, we develop control strategies 
+                            that enable soft robots to efficiently traverse granular environments while maintaining stability and energy efficiency.
+                        </p>
+                    </div>
+                    
+                    <div class="overview-media">
+                        <!-- Empty space for now, can add image or video later -->
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Hardware Update</h2>
+                    <h3>1. Mechanical Mounting</h3>
+                    <img src="img/hopping/prototype.png" alt="prototype-hopping">
+                    <p>
+                        We used Tmotor U8 Lite L, BLDC motor, with peak torque of 3.4Nm. 
+                        Did a lot of prototyping to mount the Encoder as precise gap between the encoder magnet and IC is very important for proper functioning otherwise it gives inaccurate readings or throw errors during calibration.
+                    </p>
+                </div>
+
+                <div class="results-section">
+                    <h2>Performance Results</h2>
+                    <div class="plots-container">
+                        <div class="plot-item">
+                            <img src="img/legged/locomotion-efficiency.png" alt="Locomotion Efficiency">
+                        </div>
+                        <div class="plot-item">
+                            <img src="img/legged/stability-metrics.png" alt="Stability Metrics">
+                        </div>
+                    </div>
+                    <p class="results-description">
+                        <!-- Add description here -->
+                    </p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Key Contributions</h2>
+                    <ul>
+                        <!-- Add contributions here -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-links">
+            <div class="container">
+                <div class="links-container">
+                    <a href="#" class="project-link">GitHub Repository</a>
+                    <a href="#" class="project-link">Video Demo</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Srushti Raste. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

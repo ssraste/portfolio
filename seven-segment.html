@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Robot system - Srushti Raste</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fefefe;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            background: #fefefe;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #f0f0f0;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: #2c2c2c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #2c2c2c;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2c2c2c;
+            transform: translateX(-4px);
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 2rem 0;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #2c2c2c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 2rem 0;
+            max-width: 930px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 0rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .content-section p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 0rem;
+        }
+
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 0rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        /* Two Column Layout */
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+            max-width: 1400px;
+        }
+
+        /* Left Column - PDF */
+        .pdf-column {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .pdf-column h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 750px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .pdf-controls {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .pdf-btn {
+            padding: 0.5rem 1rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-btn:hover {
+            background: #1a1a1a;
+        }
+
+        /* Right Column - Media */
+        .media-column {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .media-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .media-header {
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-bottom: 1px solid #eee;
+        }
+
+        .media-header h3 {
+            margin: 0 0 0.5rem 0;
+            color: #2c2c2c;
+            font-size: 1.2rem;
+        }
+
+        .media-header p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .media-content {
+            padding: 1.5rem;
+        }
+
+        .media-content video,
+        .media-content img {
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .media-content video {
+            object-fit: cover;
+        }
+
+        .media-content img {
+            object-fit: cover;
+        }
+
+        .media-description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Results Section */
+        .results-section {
+            grid-column: 1 / -1;
+            margin: 0rem 0;
+        }
+
+        .results-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.0rem;
+            color: #2c2c2c;
+        }
+
+        .plots-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plot-item {
+            flex: 1;
+        }
+
+        .plot-item img {
+            object-fit: cover;
+            border-radius: 1px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .results-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Links Section */
+        .project-links {
+            text-align: center;
+            padding: 3rem 0;
+            background: #fafafa;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: #666;
+            background: #fafafa;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Srushti Raste</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html#projects" class="back-link">
+                ← Back to Projects
+            </a>
+        </div>
+
+        <section class="project-header">
+            <div class="container">
+                <h1 class="project-title">Camera-Based Multi-Robot Localization & Control using AprilTags and ROS2</h1>
+                <div class="project-tags">
+                    <span class="tag">Multi-robot System</span>
+                    <span class="tag">Motion Planning</span>   
+                     <span class="tag">Robot Localization</span>             
+                </div>
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="container">
+                    <div style="display: grid; margin-bottom: 0rem;">
+                <div class="content-section">
+                    <h2>Overview</h2>
+                    My team and I, developed a multi-robot system that mimics the behavior of a seven-segment display. The goal was to explore and implement techniques for robot coordination, localization, and formation control.
+                </div>
+                </div>
+            </div>
+
+             <section class="project-content">
+             <div class="container">
+                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; margin-bottom: 0rem;">
+                      <div class="content-section" style="margin-bottom: 0;">
+                         <h2>System Working</h2>
+                         <li>  A top-down camera tracks all robots using AprilTags and publishes each robot’s real-time pose into ROS2. </li>
+                         <li>A central motion planner receives the poses and computes linear and angular velocity commands to drive each robot to its assigned target position and orientation.</li>
+                          <li> Robots execute these commands, and the camera continuously updates their positions.</li>
+                          <li> Once all robots reach their positions, their servo arms align to form the required digit on a seven-segment display.     </li>              
+                        </div>
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center; margin-top: 2em;">
+                         <img src="img/sevensegment/design.png" alt="System Block Diagram" width="450" height="350" style="border-radius: 4px;">
+                         <h5><i>High-level Design Diagram</i></h5>
+                </div>
+                 </div>
+             </div>
+       </section>
+               <section class="project-content">
+             <div class="container">
+                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0rem; align-items: start; margin-bottom: 0rem;">
+                      <div class="content-section" style="margin-bottom: 0;">
+                         <h2>System Verification</h2>
+                         <img src="img/sevensegment/eight.png" alt="System Block Diagram" width="280" height="250" style="border-radius: 4px;">
+                         <h5><i>All the six turtles formed the number zero without collisions.</i></h5>
+                     </div>
+                  <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: 5em;">
+                         <video controls autoplay loop muted width="500" height="100%" style="border-radius: 0px;">
+                            <source src="img/sevensegment/eight.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>    
+                </div>
+                 </div>
+             </div>
+       </section>
+
+             <section class="project-content">
+             <div class="container">
+                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; align-items: start; margin-bottom: 0rem;">
+                      <div class="content-section" style="margin-bottom: 0;">
+                         <h2>Hardware</h2>
+                         <li> <b>Localization:</b> Intel RealSense D435, Raspberry Pi 3B+, AprilTag 36h11, ROS2. </li>
+                         <li> <b>Planner & Testing:</b> Python-based ROS2 controller with path following, validated using Turtlesim.</li>
+                          <li> <b>Robot:</b> Elegoo Smart Robot Car V4.0 with ESP32 (microROS) for ROS communication.</li>
+                          <li><b>Actuation:</b> Arduino for motor & servo control using JSON serial messages, IMU-based PID tuned by Ziegler-Nichols.</li>
+                          </div>
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center; margin-top: 2em;">
+                        <div style="display: flex; flex-direction: row; gap: 0.5rem; align-items: center; margin-top: 2em;">
+                         <img src="img/sevensegment/cameraView.png" alt="System Block Diagram" width="235" height="200" style="border-radius: 4px;">
+                         <img src="img/sevensegment/image.jpg" alt="System Block Diagram" width="340" height="200" style="border-radius: 4px;">
+                        </div>
+                        <video controls autoplay loop muted width="400" height="100%" style="border-radius: 0px;">
+                            <source src="img/sevensegment/final.TS.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>  
+                 </div>
+             </div>
+             </div>
+       </section>
+
+ </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Srushti Raste. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+

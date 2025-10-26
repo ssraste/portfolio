@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Legged Locomotion on Granular Media - Srushti Raste</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fefefe;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            background: #fefefe;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #f0f0f0;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: #2c2c2c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #2c2c2c;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2c2c2c;
+            transform: translateX(-4px);
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 12rem 0;
+            text-align: center;
+            background: #fafafa;
+            background-image: url("img/hopping/6.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+             color: #fafafa;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: white;
+            color: #666;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 4rem 0;
+        }
+
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .content-section p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 0rem;
+        }
+
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 0rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        /* Table of Contents Sidebar */
+        .content-wrapper {
+            display: grid;
+            gap: 2rem;
+            position: relative;
+            justify-content: center;
+            max-width: 930px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            min-width: 0;
+            max-width: 940px;
+        }
+
+        .toc-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        .toc-sidebar h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-list a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.25rem 0;
+        }
+
+        .toc-list a:hover {
+            color: #2c2c2c;
+            padding-left: 0.5rem;
+        }
+
+        .toc-list a.active {
+            color: #2c2c2c;
+            font-weight: 600;
+            padding-left: 0.5rem;
+            border-left: 2px solid #2c2c2c;
+        }
+
+        /* Two Column Layout */
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+            max-width: 1400px;
+        }
+
+        /* Left Column - PDF */
+        .pdf-column {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .pdf-column h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 750px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .pdf-controls {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .pdf-btn {
+            padding: 0.5rem 1rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-btn:hover {
+            background: #1a1a1a;
+        }
+
+        /* Right Column - Media */
+        .media-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0rem;
+        }
+
+        .media-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .media-header {
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-bottom: 1px solid #eee;
+        }
+
+        .media-header h3 {
+            margin: 0 0 0.5rem 0;
+            color: #2c2c2c;
+            font-size: 1.2rem;
+        }
+
+        .media-header p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .media-content {
+            padding: 1.5rem;
+        }
+
+        .media-content video,
+        .media-content img {
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .media-content video {
+            object-fit: cover;
+        }
+
+        .media-content img {
+            object-fit: cover;
+        }
+
+        .media-description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Results Section */
+        .results-section {
+            grid-column: 1 / -1;
+            margin: 0rem 0;
+        }
+
+        .results-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.0rem;
+            color: #2c2c2c;
+        }
+
+        .plots-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plot-item {
+            flex: 1;
+        }
+
+        .plot-item img {
+            object-fit: cover;
+            border-radius: 1px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .results-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Links Section */
+        .project-links {
+            text-align: center;
+            padding: 3rem 0;
+            background: #fafafa;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            padding: 0rem 0;
+            text-align: center;
+            color: #666;
+            background: #fafafa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .toc-sidebar {
+                display: none;
+            }
+
+            .two-column-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .pdf-column {
+                position: static;
+                order: 2;
+            }
+            
+            .media-column {
+                order: 1;
+            }
+            
+            .pdf-embed {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .pdf-controls {
+                flex-direction: column;
+            }
+            
+            .media-content video {
+                height: 200px;
+            }
+            
+            .media-content img {
+                height: 150px;
+            }
+
+            .plots-container {
+                flex-direction: column;
+            }
+        }
+ </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Srushti Raste</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html#projects" class="back-link">
+                ← Back to Projects
+            </a>
+        </div>
+
+        <section class="project-header">
+            <div class="container">
+                <h1 class="project-title">Legged Locomotion on Granular Media</h1>
+                <div class="project-tags">
+                    <span class="tag">Bio-inspiration locomotion</span>               
+                    <span class="tag">ElectroMechanical Systems</span>
+                    <span class="tag">Control Theory</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="container">
+                <div class="content-wrapper">
+                    <div class="main-content">
+                        <div style="display: grid; margin-bottom: 0rem;">
+                            <div class="content-section" id="overview">
+                                <h2>Research Objective </h2>
+                                <p>Animals have complex foot structures that let them run efficiently on different terrains, stick to surfaces, and even walk on water. Researchers have been studying the biomechanics of these dynamic movements.  </p>    
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 1rem; margin-bottom: -2rem;">
+    <img src="img/hopping/lizard.png" alt="System Block Diagram" width="500" height="130" style="border-radius: 4px;">
+          <p style="text-align: center; font-size: 0.9em; color: #666; font-style: italic;">
+            photo by <a href="https://www.pexels.com/photo/lizard-on-a-desert-19802889/" target="_blank">Dorottya Ujvári on Pexels</a> </p>
+</div>                            </div>
+                                  <h3 style="margin-top: 0rem; text-align: center; color: darkred;"><i><b>How do these complex foot shapes help animals move better on sand?</b></i></h3>
+                                <p style="margin-top: 1rem;">Inspired by sand-specialist lizards, we examine how different foot morphologies affect foot–ground interactions on loose sand.</p>
+                            </div>
+                        </div>
+                     
+                        <div class="content-section" id="control" style="margin-bottom: 2;">
+                    <h2>Contributions</h2>
+                    <p>
+                          <li> We upgraded a legacy robot by upgrading <b>hardware</b> with newer motors, motor controllers and microcontroller.
+                          <li> Designed and fabricated lightweight <b>aluminum</b> mounting parts via <b>waterjet cutting</b> to ensure precise hardware alignment during jumping experiments.</li>
+                         <li>  Developed <b>control code</b> with control in joint space just like a torsional spring, implemented PD control and tuned the parameters to achieve stable jumps on acrylic beads (acts like sand).  
+                         <li>  Created a comprehensive <b>documentation</b> detailing the entire robot-building process from fabrication to assembly to testing and adding additional sensors, making it accessible to other researchers.</li>
+                          <li> Intergrated force transducer, current sensors and string potentiometer for collecting the <b>foot-ground interactions</b>, <b> jump height data </b> and <b>system efficiency. </b></li>
+                          <li> Successfully <b>maintained the same overall weight of the robot </b> like the older versions while accommodating heavier hardware.</li> 
+                         <li>  <i><b>Currently</b></i> prototyping and testing different novel foot structures, both rigid and semi-flexible feet with varying toes. </li>                   
+                    </div>
+
+                                            <div style="display: grid; margin-bottom: 0rem;">
+                            <div class="content-section" id="first-jump">
+                                <h2>First Jump (on ground)</h2>
+                                <p>
+                                    <video controls autoplay loop muted width="100%" height="450" style="border-radius: 0px;">
+                                        <source src="img/hopping/FirstJump.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>       
+                                </p>
+                            </div>
+                        </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 0.6fr; gap: 1.6rem;">
+    <div class="content-section" id="hardware">
+        <h2>Hardware Selection</h2>
+        <div style="text-align: left;">
+            <li><b>T motor U8 Lite L:</b> These BLDC motors can provide high-torque at relatively low speeds, <b>eliminating the need for gearboxes.</b> Their high-thermal load capacity, high torque, output power and light-weight make them efficient for rapid jumps.</li>
+            <i>Reference paper for selection: <a href="https://ieeexplore.ieee.org/document/7403902" target="_blank">Direct-Drive Legged Robots</a></i>
+            <li style="margin-top: 1rem;"><b>ODrive Pro motor controller: </b> We used odrive pro as it delivers high peak torque, supports BLDC motors, is easy to configure, and is commercially available. </li>
+            The main drawback is that it is a single-axis controller, so we need two odrives for each motor, which adds weight to the robot. This is largely offset by <b>lightweight Carbon fiber body and Aluminum mounts. </b>
+            <li style="margin-top: 1rem;"><b>AS5047D Encoder (SPI):</b> It offers good resolution, SPI communication, easy to use and cost effective.</li>
+            Several design iterations were required to <b>fix the vertical and XY gap</b> between the encoder and the magnet and to securely mount it, to reduce slips during jumps.
+        </div>
+    </div>
+
+    <div class="content-section" id="mounts">
+        <h2>Mounts</h2>
+        <div style="text-align: center;">
+            <img src="img/hopping/mounts.png" alt="System Block Diagram" width="400" height="430" style="border-radius: 4px;">
+        </div>
+    </div>
+</div>
+
+            <div style="display: grid; grid-template-columns: 1fr 0fr; gap: 0rem; align-items: start; margin-bottom: 0rem;">
+                            <div class="content-section" id="control" style="margin-bottom: 2;">
+                                <h2>Control Logic</h2>
+                                <div style="text-align: left;">
+                                    <li> The robot leg  behaves like a <b>Virtual Spring</b>  transitioning from soft spring to stiff during impact, to achieve jumping behavior. There isn't any physical spring attached to the robot, everything is achieved via control.
+                                    <li> The system uses <b>joint-space control</b>, where the motor angles \(\theta_0\) and \(\theta_1\) are commanded directly. The motors behave like <b>torsional springs</b>, applying torque to the link according to:
+                                    \[
+                                    \tau_0 = k (\theta_0 - \theta_\text{neutral}) \quad \text{(for motor 1)}                                    
+                                    \]
+                                    \[
+                                    \tau = k (\theta_1 - \theta_\text{neutral})  \quad \text{(for motor 2)}
+                                    \]                     
+                                    where \(\theta_\text{neutral}\) is calculated from the vertical rod length \(l\) using the following equations:
+                                    \[
+                                    l_1 = 0.1\ \text{m}, \quad
+                                    l_2 = 0.2\ \text{m}, \quad
+                                    l = 0.3\ \text{m}, \quad
+                                    l_{\text{neutral}} = 0.27\ \text{m}, \quad
+                                    l_{\text{compressed}} = 0.1\ \text{m}
+                                    \]
+                                   <p> We derive the equation relating \( l \) and \( \gamma \) as  \( l = l_1 \cos \gamma + \sqrt{l_2^2 - l_1^2 + l_1^2 \cos^2 \gamma} \) </p>
+                                   \[
+                                  \gamma = \cos^{-1}\!\left(\frac{l^2 + l_1^2 - l_2^2}{2 l_1 l}\right) \quad {\scriptstyle \text{(we get \(\gamma\) in radians, but ODrive only understands revolutions)}}
+                                   \]                                  
+                                 We can derive motor angles \(\theta_0\) and \(\theta_1\) by: 
+                                   \[
+                                   \alpha = -\theta_0 + \frac{\pi}{2}
+                                   \]
+                                   \[
+                                    \beta = \theta_1 - \frac{\pi}{2}
+                                   \]
+                                   \[
+                                   2 \gamma = \alpha + \beta
+                                   \]
+                                   Since the robot is symmetrical, we have: \( \alpha = \beta = \gamma \)
+                                   <p>We can relate the rod length \( l \) to the motor angles \( \theta_0 \) and \( \theta_1 \): at \(l\) = 0.27m, \(\theta_0\) = 0.1465 rev </p>
+                                 <li> The vertical rod can tilt on impact. Therefore, to prevent leg swinging, we constrain the <b> tilt angle \(\delta\)</b>, which is defined as: 
+                                         \(\delta\) = \(\theta_0\) - \(\theta_1\) < 0.005 rev
+                                 <li><b>Low-level control</b> is implemented on the ODrive, while a Teensy microcontroller handles high-level stiffness switching command.
+
+                                </div>                          
+                            </div>
+                           <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: 4em;">
+                                <img src="img/hopping/control.png" alt="System Block Diagram" width="250" height="400" style="border-radius: 4px;">  
+                            </div>
+                        </div>
+                        
+
+    <!---                   
+<div class="content-section" id="pd-tuning" style="margin-bottom: 2;">
+    <h2>Testing Videos</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center;">
+
+        <div style="flex: 1 1 45%; text-align: center; min-width: 300px;">
+            <h3>Velocity Control Test</h3>
+            <video controls autoplay loop muted style="width: 90%; height: 310px; object-fit: cover; border-radius: 0px;">
+                <source src="img/hopping/veltest.mov" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div style="flex: 1 1 25%; text-align: center; min-width: 200px;">
+            <h3>Encoder Feedback Test</h3>
+            <video controls autoplay loop muted style="width: 95%; height: 310px; object-fit: cover; border-radius: 0px;">
+                <source src="img/hopping/encoderfeedbacktest.mov" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div style="flex: 1 1 48%; text-align: center; min-width: 300px;">
+                        <h3>Soft Gain Tuning Trials</h3>
+            <video controls autoplay loop muted style="width: 98%; height: 345px; object-fit: cover; border-radius: 0px;">
+                <source src="img/hopping/softgaintests.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+<div style="flex: 1 1 48%; text-align: center; min-width: 300px;">
+            <h3>Soft Gain Tuning</h3>
+            <video controls autoplay loop muted style="width: 98%; height: 345px; object-fit: cover; border-radius: 0px;">
+                <source src="img/hopping/Tunedsoftgain.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</div> -->
+
+                        <div style="display: grid; margin-bottom: 0rem;">
+                            <div class="content-section" id="documentation">
+                                <h2>Documentation (First Draft)</h2>
+                                <p>
+                                    <video controls autoplay loop muted width="100%" height="450" style="border-radius: 0px;">
+                                        <source src="img/hopping/documentation.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>       
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="content-section" id="gallery" style="margin-bottom: 2rem;">
+    <h2>Testing Videos</h2>
+    <div style="text-align: center;">
+        <a href="https://drive.google.com/drive/folders/1LWgAXaUUTADN3peiD8lzGMWh1YNPEPZI?usp=sharing" target="_blank" class="drive-link">
+            <svg width="68" height="68" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;">
+                <path d="M7.71 3.5L1.15 15l3.42 6h13.42l3.43-6L15 3.5H7.71zM8.82 5.5h6.36L12 12.5 8.82 5.5zM12 14.5l-3.18 5.5H5.18L8.36 14.5h7.28l3.18 5.5h-3.64L12 14.5z"/>
+            </svg>
+            See more testing and demonstration videos!
+        </a>
+    </div>
+</div>
+
+    <div style="display: grid; grid-template-columns: 0.9fr auto auto; gap: 0rem; align-items: start; margin-bottom: 2rem;">
+    <div class="content-section" id="current-status-1" style="margin-bottom: 0;">
+        <h2>Current Status</h2>
+        <div style="text-align: left; margin-top: 3rem;">
+                                    <li> Testing different foot morphologies (rigid and semi-flexible) with different number of toes and data collection. </li>
+                                    <li> Developing Fluidizing bed for granular media. </li>
+        </div>                          
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: 4em;">
+        <img src="img/hopping/setup.jpeg" alt="System Block Diagram" width="180" height="420" style="border-radius: 4px;">
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: 4em;">
+        <img src="img/hopping/setup2.jpeg" alt="System Block Diagram" width="260" height="420" style="border-radius: 4px;">
+    </div>
+</div>
+
+                         <!-- <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0rem; align-items: start; margin-bottom: 2rem;">
+                            <div class="content-section" id="current-status-1" style="margin-bottom: 0;">
+                            <h2>Design Iterations</h2>
+                                <div style="text-align: left; margin-top: 3rem;">
+                                    <li> Multiple iterations due to calibration issues due to Encoder misalignment.</li>
+                                    <li> For reducing the weight of the robot </li>
+                                    <li> Trying ODrive onboard Encoder</li>
+                                </div>                          
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: 4em;">
+                                <img src="img/hopping/prototype.png" alt="System Block Diagram" width="490" height="410" style="border-radius: 4px;">
+                            </div>
+                        </div> -->
+
+                        <div class="content-section" id="gallery" style="margin-bottom: 2;">
+                            <h2>Gallery!! </h2>
+                            <div style="text-align: center;">
+                                <img src="img/hopping/1.jpeg" alt="System Block Diagram" width="340" height="220" style="border-radius: 4px;">
+                                <img src="img/hopping/4.jpeg" alt="System Block Diagram" width="270" height="290" style="border-radius: 4px;">
+                                <img src="img/hopping/7.jpeg" alt="System Block Diagram" width="280" height="220" style="border-radius: 4px;">
+                                <img src="img/hopping/3.jpeg" alt="System Block Diagram" width="370" height="200" style="border-radius: 4px;">
+                                <img src="img/hopping/8.jpeg" alt="System Block Diagram" width="280" height="200" style="border-radius: 4px;">
+                                <img src="img/hopping/6.jpeg" alt="System Block Diagram" width="450" height="200" style="border-radius: 4px;">
+                                <img src="img/hopping/waterjetcut.png" alt="System Block Diagram" width="350" height="230" style="border-radius: 4px;">
+                            </div>                          
+                        </div>
+
+                    </div>
+
+                    <!-- Table of Contents Sidebar 
+                    <aside class="toc-sidebar">
+                        <h3>Contents</h3>
+                        <ul class="toc-list">
+                            <li><a href="#overview">1. Overview</a></li>
+                            <li><a href="#hardware">2. Harware Selection</a></li>
+                            <li><a href="#mounts">3. Mechanical Design</a></li>
+                            <li><a href="#control">4. Control System</a></li>
+                            <li><a href="#first-jump">5. First Jump</a></li>
+                            <li><a href="#pd-tuning">6. Testing Videos</a></li>
+                            <li><a href="#documentation">7. Documentation</a></li>
+                            <li><a href="#current-status-1">8. Current Status</a></li>
+                            <li><a href="#prototyping">9. Design Iterations</a></li>
+                            <li><a href="#gallery">10. Gallery!!</a></li>
+                        </ul>
+                    </aside> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="project-links">
+            <div class="container">
+                <div class="links-container">
+                    <a href="#" class="project-link">GitHub Repository</a>
+                </div>
+            </div>
+        </section>
+    </main> -->
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Srushti Raste. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

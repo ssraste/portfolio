@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Other Projects - Srushti Raste</title>
+    <style>
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fefefe;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            background: #fefefe;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #f0f0f0;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: #2c2c2c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #2c2c2c;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2c2c2c;
+            transform: translateX(-4px);
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 2rem 0;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #2c2c2c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Project Image */
+        .project-image {
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .project-image img {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 2rem 0;
+            max-width: 930px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 1rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .content-section p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        /* Technical Details */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .tech-card {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #2c2c2c;
+        }
+
+        .tech-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .tech-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Links Section */
+        .project-links {
+            text-align: center;
+            padding: 3rem 0;
+            background: #fafafa;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: #666;
+            background: #fafafa;
+            font-size: 0.9rem;
+        }
+
+        /* Two Column Layout */
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 2fr 1.6fr;
+            gap: 1rem;
+            margin: 0rem 0;
+            max-width: 1400px;
+        }
+
+        /* Left Column - PDF */
+        .pdf-column {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .pdf-column h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .pdf-controls {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .pdf-btn {
+            padding: 0.5rem 1rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-btn:hover {
+            background: #1a1a1a;
+        }
+
+        /* Right Column - Media */
+        .media-column {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .media-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .media-header {
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-bottom: 1px solid #eee;
+        }
+
+        .media-header h3 {
+            margin: 0 0 0.5rem 0;
+            color: #2c2c2c;
+            font-size: 1.2rem;
+        }
+
+        .media-header p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .media-content {
+            padding: 1.5rem;
+        }
+
+        .media-content video,
+        .media-content img {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .media-content video {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .media-content img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .media-description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Results Section */
+        .results-section {
+            grid-column: 1 / -1;
+            margin: 0rem 0;
+        }
+
+        .results-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .plots-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plot-item {
+            width: auto;      
+            height: auto;
+            flex: 1;
+        }
+
+        .plot-item img {
+            height: 350px;
+            object-fit: cover;
+            border-radius: 1px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .results-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .two-column-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .pdf-column {
+                position: static;
+                order: 2;
+            }
+            
+            .media-column {
+                order: 1;
+            }
+            
+            .pdf-embed {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .project-image img {
+                height: 250px;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .links-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pdf-controls {
+                flex-direction: column;
+            }
+            
+            .media-content video {
+                height: 200px;
+            }
+            
+            .media-content img {
+                height: 150px;
+            }
+
+            .plots-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Srushti Raste</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html#projects" class="back-link">
+                ← Back to Projects
+            </a>
+        </div>
+
+        <section class="project-header">
+            <div class="container">
+                <h1 class="project-title">Other projects</h1>
+                <div class="project-tags">
+                    <span class="tag">Gesture controlled robotic car</span>    
+                    <span class="tag">Quadcopter from scratch</span>
+                    <span class="tag">Approximately soft body dynamics with rigid body methods</span>
+                    <span class="tag">Speed Control of Split-Phase Induction Motor Using Thyristor-Based Cycloconverter</span>    
+                 </div>
+            </div>
+        </section>
+ 
+<section class="project-content">
+  <div class="container">
+    <div class="content-section" style="margin-bottom: 0;">
+      <h2> - Quadcopter from scratch</h2>
+      <li>My teammate and I built a quadcopter from scratch, including a custom chassis, a self-designed flight controller, and a custom transmitter-receiver communication system.</li>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; margin-bottom: 0rem;">
+        <div class="content-section" style="margin-bottom: 0;">
+          <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: 2.5rem;">
+            <h3>Chassis</h3>
+            <div style="display: flex; flex-direction: row; gap: 0.7rem; align-items: center;">
+              <img src="img/otherprojects/quadarm.png" width="350" height="140" style="border-radius: 4px;">
+              <img src="img/otherprojects/quadarm1.png" width="100" height="250" style="border-radius: 4px;">
+            </div>
+            <div style="display: flex; flex-direction: row; gap: 0.7rem; align-items: center;">
+              <img src="img/otherprojects/quadbase.png" width="220" height="200" style="border-radius: 4px;">
+              <img src="img/otherprojects/chassis.png" width="220" height="200" style="border-radius: 4px;">
+            </div>           
+              <div style="display: flex; flex-direction: row; gap: 0.7rem; align-items: center;">
+             <p>Our IDs (67 & 72) and initials (S, S) are for identification.</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-section" style="margin-bottom: 0;">
+          <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: 2.5rem;">
+            <h3>Flight controller and Transmitter</h3>
+            <div style="display: grid; grid-template-columns: 0fr 1fr; gap: 0rem; align-items: start; margin-top: 2rem;">
+              <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+                <img src="img/otherprojects/flightcontrollerpcb.png" width="150" height="220" style="border-radius: 4px;">
+                <img src="img/otherprojects/quadtrans.png" width="230" height="280" style="border-radius: 4px;">
+              </div>
+              <div style="width: 100%; height: 550px; overflow: hidden; border-radius: 0px;">
+                <video controls autoplay loop muted width="120%" height="70%" style="object-fit: cover; object-position: center;">
+                  <source src="img/otherprojects/quadfc.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+     <section class="project-content">
+            <div class="content-section" style="margin-bottom: 0;">
+                <h2>- Gesture controlled car</h2>
+                 <div style="display: grid; grid-template-columns: 0.7fr 1fr; gap: 1rem; align-items: start; margin-bottom: 0rem;">
+                      <div class="content-section" style="margin-bottom: 0;">
+                         <li>The robot is controlled by a PCB embedded in a glove, allowing wireless control through hand gestures.</li>
+                         <li>The MPU6050 detects hand tilt and sends data to an Arduino Nano via I2C. The Arduino transmits movement commands over Bluetooth (HC-05) to the car via UART, where another Arduino Mega relays signals to an L293D motor driver to control the DC motors attached to car's wheels..</li>
+                        </div>
+<div class="content-section" style="margin-bottom: 0;">
+          <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: -4rem;">
+            <h4>Bluetooth module pairing</h4>
+                <div style="display: grid; grid-template-columns: 0.5fr 1fr; gap: 0.7rem; align-items: center; margin-top: 0.5rem; width: 100%; margin-bottom: 1rem;">
+              <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center;">
+                <img src="img/otherprojects/pcb.png" width="220" height="190" style="border-radius: 4px;">
+              </div>
+              <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 0px;">
+                <video controls autoplay loop muted width="300" height="100%" style="object-fit: cover; object-position: center;">
+                  <source src="img/otherprojects/GCCpairing.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <h4>Demo video </h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; align-items: center; margin-top: 1rem; width: 100%;">
+              <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center;">
+                <img src="img/otherprojects/GCC.png" width="250" height="200" style="border-radius: 4px;">
+              </div>
+              <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 0px;">
+                <video controls autoplay loop muted width="100%" height="100%" style="object-fit: cover; object-position: center;">
+                  <source src="img/otherprojects/GCC.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+                 </div>
+             </div>
+ </section>  
+
+<section class="project-content">
+  <div class="content-section" style="margin-bottom: 0;">
+    <h2>- Speed Control of Split-Phase Induction Motor Using Thyristor-Based Cycloconverter</h2>
+    <div style="display: flex; flex-direction: column; gap: 2rem; margin-top: 0rem;">
+      <div style="display: flex; justify-content: center;">
+        <img src="img/otherprojects/pe.png" width="800" height="480" style="max-width: 100%;">
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <li>I simulated a split-phase induction motor controlled by a single-phase to single-phase cycloconverter in Simulink.</li>
+          <li>I varied the motor speed by changing the supply frequency, and studied the motor performance, output currents, rotor speed, and torque waveforms, and analyzed the effect of switching devices on performance.</li>
+        </div>
+        <div style="display: flex; flex-direction: row; gap: 0rem; align-items: start; justify-content: center;">
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+            <img src="img/otherprojects/pe1.png" width="330" height="400">
+            <p style="text-align: center; font-size: 0.9rem;">(a) Source Voltage (b) Output Voltage (c) Output current Waveform of Single Phase to Single Phase Cycloconverter When Input Frequency is Two Times Output Frequency.</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+            <img src="img/otherprojects/pe2.png" width="330" height="400">
+            <p style="text-align: center; font-size: 0.9rem;">(a) Main winding and auxiliary winding current (b) Rotor Speed (c) Load and Electromagnetic Torque Waveform of Single Phase Induction Motor, When Input Frequency to the Cycloconverter is Two Times Output Frequency</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <section class="project-content">
+                 <div class="content-section" style="margin-bottom: 0;">
+                 <h2>- Approximately soft body dynamics with rigid body methods</h2>
+                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; margin-bottom: 0rem;">
+                      <div class="content-section" style="margin-bottom: 0;">
+                           <li> Traditional rigid body dynamics struggle to model soft body behavior accurately, as large deformations introduce a nonlinear stress-strain relationship. I model a soft PneuNet actuator with a hybrid method blending rigid and soft body dynamics.
+                            <li> This approach captures the nonlinear behavior typical of hyperelastic materials while treating the structure as a series of rigid links with cumulative displacements. </li> 
+                         <p></p>
+                         <h4>a. Pressure Force <span class="formula">\( (F_{\text{pressure}}) = \frac{P \cdot A_0}{1 + P/E} \)</span></h4>
+                         <h4>b. Spring Force <span class="formula">\( F_{\text{spring}} = - P \cdot A_0 \)</span></h4>
+                          <h4>c. Damping Force<span class="formula">\( F_{\text{damping}} = - c \cdot v \)</span></h4>
+                          <h4>d. Gravity Force<span class="formula">\( F_{\text{gravity}} = - m \cdot g \)</span></h4>
+<h4>e. Lateral Force <span class="formula">\( (F_{\text{lateral}}) = C \cdot \frac{\Delta EI}{L_0^2} \cdot \sin\left(\frac{\pi i}{N}\right) \)</span></h4>
+<h4>f. Acceleration <span class="formula">\( (a) = \frac{F_{\text{pressure}} + F_{\text{spring}} + F_{\text{damping}} + F_{\text{gravity}} + F_{\text{lateral}}}{m} \)</span></h4>
+<h4>g. Pneunet Properties</h4>
+<p class="formula">
+  Cavity Volume: \(3.9 \times 10^{-8}\) m³, 
+  Cavity Mass: 0.0417 kg, 
+  Number of Chambers: 7, 
+  Young's Modulus: \(220 \times 10^3\) Pa, 
+  Strain Limiting Layer: \(w = 16.69 \times 10^{-3}\) m, \(h = 2.95 \times 10^{-3}\) m
+</p>
+<li>  The simulation is done using 7 joints i.e. 7 chambers and 6 links, the forces acting on these joints and links are inducing some bending effect. </li>
+<li> The model doesn't account continuous deformation like in Piecewise curvature constant or Continuum Cosserat models. </li>
+</div>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center; margin-top: 0rem;">
+                            <img src="img/otherprojects/s1.png" width="330" height="120">
+                                        <h5>Pressure = 50KPa</h5>
+                             <img src="img/otherprojects/s2.png" width="330" height="210">
+                                         <h5>Pressure = 200KPa</h5>
+                            <img src="img/otherprojects/s3.png" width="330" height="210">
+
+                 </div>
+                 </div>
+             </div>
+ </section>   
+
+
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Srushti Raste. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

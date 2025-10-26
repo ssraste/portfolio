@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Manipulation in Musculoskeletal Simulations - Srushti Raste</title>
+    <style>
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fefefe;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            background: #fefefe;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #f0f0f0;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: #2c2c2c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #2c2c2c;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2c2c2c;
+            transform: translateX(-4px);
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 2rem 0;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #2c2c2c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Project Image */
+        .project-image {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .project-image img {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 2rem 0;
+            max-width: 930px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 1rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .content-section p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        /* Technical Details */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .tech-card {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #2c2c2c;
+        }
+
+        .tech-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .tech-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Links Section */
+        .project-links {
+            text-align: center;
+            padding: 3rem 0;
+            background: #fafafa;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: #666;
+            background: #fafafa;
+            font-size: 0.9rem;
+        }
+
+        /* Two Column Layout */
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 2fr 1.6fr;
+            gap: 1rem;
+            margin: 0rem 0;
+            max-width: 1400px;
+        }
+
+        /* Left Column - PDF */
+        .pdf-column {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .pdf-column h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .pdf-controls {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .pdf-btn {
+            padding: 0.5rem 1rem;
+            background: #2c2c2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-btn:hover {
+            background: #1a1a1a;
+        }
+
+        /* Right Column - Media */
+        .media-column {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .media-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .media-header {
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-bottom: 1px solid #eee;
+        }
+
+        .media-header h3 {
+            margin: 0 0 0.5rem 0;
+            color: #2c2c2c;
+            font-size: 1.2rem;
+        }
+
+        .media-header p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .media-content {
+            padding: 1.5rem;
+        }
+
+        .media-content video,
+        .media-content img {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .media-content video {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .media-content img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .media-description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Results Section */
+        .results-section {
+            grid-column: 1 / -1;
+            margin: 0rem 0;
+        }
+
+        .results-section h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+        }
+
+        .plots-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plot-item {
+            width: auto;      
+            height: auto;
+            flex: 1;
+        }
+
+        .plot-item img {
+            height: 350px;
+            object-fit: cover;
+            border-radius: 1px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .results-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .two-column-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .pdf-column {
+                position: static;
+                order: 2;
+            }
+            
+            .media-column {
+                order: 1;
+            }
+            
+            .pdf-embed {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .project-image img {
+                height: 250px;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .links-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pdf-controls {
+                flex-direction: column;
+            }
+            
+            .media-content video {
+                height: 200px;
+            }
+            
+            .media-content img {
+                height: 150px;
+            }
+
+            .plots-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Srushti Raste</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html#projects" class="back-link">
+                ← Back to Projects
+            </a>
+        </div>
+
+        <section class="project-header">
+            <div class="container">
+                <h1 class="project-title">Object Manipulation in Musculoskeletal Simulations</h1>
+                <div class="project-tags">
+                    <span class="tag">Reinforcement Learning</span>
+                    <span class="tag">MuJoco</span>
+                    <span class="tag">Myosuite</span>
+                </div>
+            </div>
+                    </section>
+        <section class="project-content">
+            <div class="container">
+              <div class="content-section">
+               <p> <li> Inspired by <b>MyoChallenge 2023</b>, I trained a virtual musculoskeletal arm model to grasp, lift, and place an object into a designated target box using MuJoco simulator and MyoSuite's Relocation environment to perform pick and place task. 
+              <p><li> I used <b>Proximal Policy Optimization</b> algorithm as it provides stable training in continuous control tasks. </li></p>
+              <li>MyoArm model has 27 DoFs and 63 muscle-tendon units, the agent initially explores all possible states</li>
+              <p><li> I tried using MyoSuite's default reward structure, but then optimized it with Custom intermediate rewards and penalties to improve the training time and fine-tuned Hyperparameter to get higher and stable rewards.</li></p>
+             </div>
+            </div>
+
+<section class="project-content">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 0.7fr; gap: 0rem; align-items: start; margin-bottom: 0rem;">
+            <!-- Left - Design Text -->
+            <div class="content-section" style="margin-bottom: 0;">
+                <h2>Proximal Policy Optimization</h2>
+                <p><li>The agent interacts with an environment by taking actions based on its current state. After each action, the environment provides feedback in the form of a reward, which tells the agent how good or bad that action was for achieving its goal. 
+                    The agent’s goal is to learn a policy that <b>maximizes the total reward over time.</b></li></p> 
+                <p><li>I used PPO as it was simpler to implement and more stable during training. The downside is that it took more training steps to reach the goal compared to SAC.</li></p> 
+            </div>
+            <!-- Right - Design Images -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+                <img src="img/myo/myo ppo.png" width="340" height="150" style="border-radius: 4px; margin-top: 3rem;">
+          <p style="text-align: center; font-size: 0.9em; color: #666; font-style: italic;">
+            Image by <a href="https://medium.com/@alaminhnab4/understanding-q-learning-in-reinforcement-learning-3b0e10223ae5" target="_blank">alaminhnab4 on Medium</a> 
+           </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="project-content">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; margin-bottom: 0rem;">
+            <!-- Left - Design Text -->
+            <div class="content-section" style="margin-bottom: 0;">
+                <h2>Training with Default Settings</h2>
+                <p><li> Training with default reward structure and PPO hyperparameters, the agent explored all possible states which leads to <b>low rewards and increased training time</b>. </li></p>
+                <img src="img/myo/myo default reward table.png" alt="Reward Curves" style="width: 75%; height: auto; border-radius: 4px; align-items:center;">
+                <p> <li>The <b>value loss</b> decreases slowly, while the <b>policy loss</b> remains erratic and stabilizes gradually. </li></p>
+               <p> <li> The <b>reward curve shows slow improvement</b> as the overall rewards are improving but still negative due to the complexity of controlling many DOFs. </li></p>
+               <p> <li> Occasionally, there are spikes in negative rewards as the agent explores new states. </li></p>
+            </div>
+            <!-- Right - Design Images -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+                    <video controls autoplay loop muted width="100%" height="300" style="border-radius: 0px;">
+                            <source src="img/myo/myoinitial.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>  
+                    <div style="width: 100%; display: flex; justify-content: center;">
+                     <img src="img/myo/myo default rewards.png" alt="Reward Curves" style="width: 110%; height: 300px; border-radius: 4px;">
+                    </div>           
+                 </div>
+        </div>
+    </div>
+</section>
+
+<section class="project-content">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; margin-bottom: 0rem;">
+            <!-- Left - Design Text -->
+            <div class="content-section" style="margin-bottom: 0;">
+                <h2>Training with Custom Settings</h2>
+                <p><li> Introduced a custom reward structure to provide intermediate feedback, which encouraged desired behaviors and <b>Penalized undesired actions</b> and also <b>fine-tuned</b> the hyperparameters for stable updates. </li></p>
+                <p> <li>The agent <b>attempts to grasp the object</b> by applying torques to its joints; however, it ends up pushing the object farther away, suggesting that <b>more training is needed.</b></li> </p>
+                <img src="img/myo/myo custom rewards table.png" alt="Reward Curves" style="width: 100%; height: auto; border-radius: 4px; align-items:center;">
+                 <img src="img/myo/myo hyperparamters tuned.png" alt="Reward Curves" style="width: 60%; height: auto; border-radius: 4px; align-items:center;">
+               <p> <li>There is a decrease in the Value loss curve is much smoother compared to the earlier plots.</li></p>
+                <p><li>The Policy loss curve is stable and gradually decreased, which shows improvement in training and the rewards curve shows positive rewards. </li></p>
+                   </div>
+            <!-- Right - Design Images -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+                       <video controls autoplay loop muted width="100%" height="300" style="border-radius: 0px;">
+                            <source src="img/myo/ppofinal.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>  
+                    <div style="width: 100%; display: flex; justify-content: center;">
+                     <img src="img/myo/myo 0.0004128.png" alt="Reward Curves" style="width: 100%; height: 500px; border-radius: 4px;">
+                    </div>         
+                 </div>
+        </div>
+    </div>
+</section>
+
+    <div class="pdf-column">
+                <h2>Report</h2>
+                <iframe class="pdf-embed" 
+                        src="img/myo/myosuite_Report.pdf"
+                        frameborder="0">
+                    <p>Your browser does not support iframes. </p>
+                </iframe>
+                <div class="pdf-controls">
+                    <a href="img/myo/myosuite_Report.pdf" download class="pdf-btn">Download</a>
+                </div>
+            </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Srushti Raste. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

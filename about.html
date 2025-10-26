@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Srushti Raste</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #000;
+            background: #fefefe;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Left Sidebar */
+        .left-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: #1A1A1A;
+            border-right: 1px solid #e0e0e0;
+            padding: 12.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .sidebar-image {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 1px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-name {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            color: #CCCCCC;
+        }
+
+        .sidebar-tagline {
+            font-size: 0.95rem;
+            color: #CCCCCC;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .sidebar-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-links a {
+            color: #CCCCCC;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-links a:hover {
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 410px;
+            flex: 1;
+            width: calc(100% - 410px);
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 0;
+            background: #fefefe;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid #f0f0f0;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2c2c2c;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover {
+            color: #2c2c2c;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #2c2c2c;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2c2c2c;
+            transform: translateX(-4px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 3rem 0 4rem;
+            background: #fafafa;
+            min-height: calc(100vh - 100px);
+        }
+
+        .about-wrapper {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 0rem;
+            align-items: start;
+            margin-bottom: 4rem;
+        }
+
+        /* Image Carousel */
+        .carousel-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin-top: 2rem;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-image {
+            min-width: 100%;
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-button.prev {
+            left: 15px;
+        }
+
+        .carousel-button.next {
+            right: 15px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #2c2c2c;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* About Content */
+        .about-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: #2c2c2c;
+            margin-left: -2.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-left: -2.5rem;
+        }
+
+        /* Education Section */
+        .education-section {
+            margin-top: 5rem;
+            padding: 2rem 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .education-section h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: #2c2c2c;
+            letter-spacing: -0.02em;
+        }
+
+        .education-item {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 0rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .education-year {
+            font-size: 0.95rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .education-details h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #2c2c2c;
+        }
+
+        .education-details .degree {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details .description {
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.6;
+        }
+        /* Contact Section */
+.contact-section {
+    margin-top: 0rem;
+    padding: 2rem 0;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 0rem;
+    color: #2c2c2c;
+    letter-spacing: -0.02em;
+}
+
+.contact-section p {
+    font-size: 1.05rem;
+    color: #666;
+    margin-bottom: 0rem;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background: #2c2c2c;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    background: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.cv-button {
+    background: white;
+    color: #2c2c2c;
+    border: 2px solid #2c2c2c;
+}
+
+.cv-button:hover {
+    background: #2c2c2c;
+    color: white;
+}
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: #666;
+            background: #fafafa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            body {
+                display: block;
+            }
+
+            .left-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 2rem 1rem;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .about-wrapper {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .carousel-container {
+                max-width: 100%;
+            }
+
+            .education-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .about-content h1 {
+                font-size: 2rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: rgba(44, 44, 44, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <aside class="left-sidebar">
+        <img src="img/3.jpeg" alt="Srushti Raste" class="sidebar-image">
+        <h1 class="sidebar-name">Srushti Raste</h1>
+        <p class="sidebar-tagline">Research Associate in Soft Robots Lab at Wesleyan University. </p>
+        
+        <div class="sidebar-links">
+            <a href="mailto:srushtiraste44@gmail.com" title="Email" aria-label="Email">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/srushti-raste/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
+                </svg>
+            </a>
+        <a href="https://scholar.google.com/citations?user=KWPGjKAAAAAJ&hl=en" target="_blank" title="Google Scholar" aria-label="Google Scholar">
+         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 24a7 7 0 110-14 7 7 0 010 14zm0-24L0 9.5l4.838 3.94A8 8 0 0112 9a8 8 0 017.162 4.44L24 9.5z"/>
+         </svg>
+        </a>
+            <a href="img/Sru_Resume.pdf" download title="Download CV" aria-label="Download CV">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+               <polyline points="14 2 14 8 20 8"/>
+               <line x1="12" y1="18" x2="12" y2="12"/>
+               <polyline points="9 15 12 18 15 15"/>
+            </svg>
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header id="header">
+            <nav class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="about">
+                <div class="container">
+                    <a href="index.html" class="back-link">← Back to Home</a>
+                    
+                    <div class="about-wrapper">
+                        <div class="about-grid">
+                            <!-- Image Carousel on Left -->
+                            <div class="carousel-container">
+                                <div class="carousel">
+                                    <button class="carousel-button prev" onclick="changeSlide(-1)">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="15 18 9 12 15 6"></polyline>
+                                        </svg>
+                                    </button>
+                                    
+                                    <div class="carousel-images" id="carouselImages">
+                                        <img src="img/pic.jpeg" alt="Srushti Raste" class="carousel-image">
+                                        <img src="img/Goats_mentor.jpeg" alt="Mentoring Smith middle school, FIRST LEGO LEAGUE robotics team Glastonbury Goats!" class="carousel-image">
+                                        <img src="img/2.jpeg" alt="SKREAM 2022 KJSCE" class="carousel-image">
+                                    </div>
+                                    
+                                    <button class="carousel-button next" onclick="changeSlide(1)">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                                
+                                <div class="carousel-dots" id="carouselDots">
+                                    <span class="dot active" onclick="goToSlide(0)"></span>
+                                    <span class="dot" onclick="goToSlide(1)"></span>
+                                    <span class="dot" onclick="goToSlide(2)"></span>
+                                </div>
+                                
+                                <p class="image-caption" id="imageCaption">BU Graduation 2025</p>
+                            </div>
+                            
+                            <!-- About Content on Right -->
+                            <div class="about-content">
+                                <h1>About Me</h1>
+                               <p>I grew up in Mumbai, India, where I pursued my bachelors in Electronics Engineering. After Graduation, I moved to Massachusetts to pursue a master’s in Robotics, where I was fortunate to work in research labs and discovered my passion for bioinspired robotics.</p>
+                                 
+                                <p>I currently live in the beautiful town of Connecticut, and I am a Research Associate at Wesleyan University, working on legged locomotion on granular media.</p>
+                                
+                                <p>In my free time, I love playing badminton, singing, and exploring new coffee shops around town.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Education Section -->
+                        <div class="education-section">
+                            <h2>Education</h2>
+                            
+                            <div class="education-item">
+                                <div class="education-year">Sept 2023 -  Jan 2025</div>
+                                <div class="education-details">
+                                    <h3>Boston University</h3>
+                                    <p class="degree">Master of Science in Robotics & Autonomous Systems</p>
+                                </div>
+                            </div>
+                            
+                            <div class="education-item">
+                                <div class="education-year">Aug 2019 - May 2023</div>
+                                <div class="education-details">
+                                    <h3>K.J. Somaiya College of Engineering, University of Mumbai</h3>
+                                    <p class="degree">Bachelor of Technology in Electronics Engineering</p>
+                                    <p class="description">KJSCE Robocon, Emfinity Math Club, SKREAM Badminton Team & Throwball Team</p>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="contact-section">
+                         <div class="contact-buttons">     
+                         <a href="img/Sru_Resume.pdf" download class="contact-button cv-button">
+                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                       <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                           </svg>
+                         Download CV
+                         </a>
+                       </div>
+                      </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 Srushti Raste. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const captions = [
+            "BU Graduation 2025",
+            "Mentoring Smith middle school, FIRST LEGO LEAGUE robotics team <span style='color: #2c2c2c; font-weight: 600;'>Glastonbury Goats</span>!",
+            "SKREAM 2022 KJSCE"
+        ];
+
+        function changeSlide(direction) {
+            const images = document.getElementById('carouselImages');
+            const dots = document.querySelectorAll('.dot');
+            const totalSlides = dots.length;
+            
+            currentSlide += direction;
+            
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            }
+            
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const images = document.getElementById('carouselImages');
+            const dots = document.querySelectorAll('.dot');
+            const caption = document.getElementById('imageCaption');
+            
+            images.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            
+            caption.innerHTML = captions[currentSlide];
+        }
+    </script>
+</body>
+</html>
