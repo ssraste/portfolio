@@ -527,17 +527,27 @@
                          <li>  <i><b>Currently</b></i> prototyping and testing different novel foot structures, both rigid and semi-flexible feet with varying toes. </li>                   
                     </div>
 
-                                            <div style="display: grid; margin-bottom: 0rem;">
-                            <div class="content-section" id="first-jump">
-                                <h2>First Jump (on ground)</h2>
-                                <p>
-                                    <video controls autoplay loop muted width="100%" height="450" style="border-radius: 0px;">
-                                        <source src="img/hopping/FirstJump.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>       
-                                </p>
-                            </div>
-                        </div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0rem;">
+    <div class="content-section" id="first-jump" style="text-align: center;">
+        <h2>First Jump (on ground)</h2>
+        <p>
+            <video controls autoplay loop muted width="100%" height="500px" style="border-radius: 0px;">
+                <source src="img/hopping/FirstJump.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>       
+        </p>
+    </div>
+    
+    <div class="content-section" id="Jump on acrylic beads" style="text-align: center;">
+        <h2>Jump on acrylic beads</h2>
+        <p>
+            <video controls autoplay loop muted width="100%" height="500px" style="border-radius: 0px;">
+                <source src="img/hopping/Jump_on_GM.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>       
+        </p>
+    </div>
+</div>
 
                     <div style="display: grid; grid-template-columns: 1fr 0.6fr; gap: 1.6rem;">
     <div class="content-section" id="hardware">
@@ -556,6 +566,40 @@
         <h2>Mounts</h2>
         <div style="text-align: center;">
             <img src="img/hopping/mounts.png" alt="System Block Diagram" width="400" height="430" style="border-radius: 4px;">
+        </div>
+    </div>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0rem;">
+    <div class="content-section" id="hardware">
+        <h2>ProtoMAX WaterJet cutting</h2>
+        <div style="text-align: left;">
+            <video controls autoplay loop muted style="width: 90%; height: 220px; object-fit: cover; border-radius: 0px;">
+                <source src="img/hopping/machining/IMG_8771 2.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div style="display: grid; text-align: center;  grid-template-columns: 1fr 1fr; gap: 1rem; width: 90%; margin-top: 1rem;">
+                <img src="img/hopping/machining/motormount.jpeg" alt="Waterjet 1" style="width: 100%; height: 180px; object-fit: cover; border-radius: 0px;">
+                <img src="img/hopping/machining/legmount.jpeg" alt="Waterjet 2" style="width: 70%; height: 180px; object-fit: cover; border-radius: 0px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section" id="mounts">
+        <h2>Tormach CNC Mill</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <video controls autoplay loop muted style="width: 100%; height: 220px; object-fit: cover; border-radius: 0px;">
+                <source src="img/hopping/machining/cnc1.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>   
+       
+            <video controls autoplay loop muted style="width: 100%; height: 220px; object-fit: cover; border-radius: 0px;">
+                <source src="img/hopping/machining/cnc2.MOV" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>    
+        </div>
+        <div style="text-align: center; margin-top: 1rem;">
+            <img src="img/hopping/machining/IMG_9534.jpeg" alt="CNC Mill" style="width: 70%; height: 200px; object-fit: cover; border-radius: 0px;">
         </div>
     </div>
 </div>
@@ -645,17 +689,6 @@
     </div>
 </div> -->
 
-                        <div style="display: grid; margin-bottom: 0rem;">
-                            <div class="content-section" id="documentation">
-                                <h2>Documentation (First Draft)</h2>
-                                <p>
-                                    <video controls autoplay loop muted width="100%" height="450" style="border-radius: 0px;">
-                                        <source src="img/hopping/documentation.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>       
-                                </p>
-                            </div>
-                        </div>
 
                         <div class="content-section" id="gallery" style="margin-bottom: 2rem;">
     <h2>Testing Videos</h2>
@@ -669,6 +702,18 @@
     </div>
 </div>
 
+                        <div style="display: grid; margin-bottom: 0rem;">
+                            <div class="content-section" id="documentation">
+                                <h2>Documentation (First Draft)</h2>
+                                <p>
+                                    <video controls autoplay loop muted width="100%" height="450" style="border-radius: 0px;">
+                                        <source src="img/hopping/documentation.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>       
+                                </p>
+                            </div>
+                        </div>
+
     <div style="display: grid; grid-template-columns: 0.9fr auto auto; gap: 0rem; align-items: start; margin-bottom: 2rem;">
     <div class="content-section" id="current-status-1" style="margin-bottom: 0;">
         <h2>Current Status</h2>
@@ -678,7 +723,7 @@
         </div>                          
     </div>
     <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: 4em;">
-        <img src="img/hopping/setup.jpeg" alt="System Block Diagram" width="180" height="420" style="border-radius: 4px;">
+        <img src="img/hopping/setup.jpeg" alt="System Block Diagram" width="265" height="420" style="border-radius: 4px;">
     </div>
     <div style="display: flex; flex-direction: column; gap: 0rem; align-items: center; margin-top: 4em;">
         <img src="img/hopping/setup2.jpeg" alt="System Block Diagram" width="260" height="420" style="border-radius: 4px;">
@@ -708,7 +753,6 @@
                                 <img src="img/hopping/3.jpeg" alt="System Block Diagram" width="370" height="200" style="border-radius: 4px;">
                                 <img src="img/hopping/8.jpeg" alt="System Block Diagram" width="280" height="200" style="border-radius: 4px;">
                                 <img src="img/hopping/6.jpeg" alt="System Block Diagram" width="450" height="200" style="border-radius: 4px;">
-                                <img src="img/hopping/waterjetcut.png" alt="System Block Diagram" width="350" height="230" style="border-radius: 4px;">
                             </div>                          
                         </div>
 
