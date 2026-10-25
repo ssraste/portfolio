@@ -732,9 +732,11 @@
         <div class="hero-content">
             <div class="hero-text">
                 <div class="description">
-             <p>I’m Sru, a research associate in <b>Soft Robots Lab</b> at <b>Wesleyan University</b>, supervised by <b>Professor Sonia Roberts</b>.</p>
-             <p style="margin-top: 1rem;">At the Soft Robots Lab, we're developing bioinspired foot structures with varying toes configurations to jump efficiently on sand.</p>
-             <p>My work involves developing a robotic platform for testing different foot structures to investigate jumping on granular media.</p>
+             <p> I am Sru, a first year PhD student in <b>KOLab</b> at <b>Tufts University</b>.</p>
+             
+             <p> Before starting my PhD, I was a research associate in Soft Robots Lab at Wesleyan University, supervised by Professor Sonia Roberts and co-advised by Professor Tonia Hsieh. My research focused on toe morphology for improved robot locomotion on granular surfaces.</p>
+             <!-- <p style="margin-top: 1rem;">At the Soft Robots Lab, we're developing bioinspired foot structures with varying toes configurations to jump efficiently on sand.</p> -->
+             <!-- <p>My work involves developing a robotic platform for testing different foot structures to investigate jumping on granular media.</p> -->
              <p style="margin-top: 1rem;">    
                 My research interests lie in taking inspiration from nature and developing novel robot designs, sensing, and control strategies for multi-domain exploration and medical technologies. </p>              
               </div>
@@ -775,8 +777,7 @@
                 <img src="img/srl.png" alt="Lab" style="width: 90px; height: 150px; object-fit: contain; border-radius: 0px; position: absolute; top: -0.5rem; right: 1.5rem;">      
                 <img src="img/wesleyan.png" alt="University" style="width: 60px; height: 100px; object-fit: contain; border-radius: 0px; position: absolute; top: 1rem; right: 7rem;">        
                  <p class="research-description">
-                  I had the opportunity to demonstrate a robotic application for a novel soft strain sensor. Manuscript under review for ICRA 2026.
-                </p>
+                 <p> <a href="https://ieeexplore.ieee.org/abstract/document/11031184" target="_blank" style="display: inline-block; color: #2c2c2c; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 2px; margin-bottom: 1.0rem; transition: all 0.3s ease;">View Publication</a> </p>
                 <p><b>This work is supported by NSF under Award 2347708</b></p>
             </div>
 
@@ -943,3 +944,13 @@
 
             // Add loading state to project links
             const projectLinks = document.querySelectorAll('.project-link');
+            projectLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const card = this.closest('.project-card');
+                    if (card) {
+                        card.classList.add('loading');
+                    }
+                });
+            });
+        });
+    </script>           
